@@ -1,0 +1,2881 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<style>
+    html,
+    body {
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-weight: 300;
+        /* font-weight: 400; */
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        padding: 0;
+        margin: 0;
+        /* overflow: hidden; */
+    }
+
+    :root {
+        --black_1: #000000;
+        --black_2: #1D1D1D;
+        --black_3: #333333;
+        --white_1: #FFFFFF;
+        --white_2: #F9F9F9;
+        --gray_1: #ECECEC;
+        --gray_2: #D8D8D8;
+        --gray_3: #B6B6B6;
+        --gray_4: #929292;
+        --gray_5: #949494;
+        --gray_6: #767676;
+        --red_1: #FF2A2A;
+        --red_2: #CD0000;
+    }
+
+    @font-face {
+        font-family: "abchanel-corpo";
+        src: url("https://fonts.chanel.com/k/64b14ed9188172fd562480b882a998c1cb8e8eb2-l.woff2") format("woff2"), url("https://fonts.chanel.com/k/64b14ed9188172fd562480b882a998c1cb8e8eb2-d.woff") format("woff"), url("https://fonts.chanel.com/k/64b14ed9188172fd562480b882a998c1cb8e8eb2-a.otf") format("opentype");
+        font-style: normal;
+        font-weight: 300
+    }
+
+    @font-face {
+        font-family: "abchanel-corpo-semibold";
+        src: url("https://fonts.chanel.com/k/4557ee3c5c7e229667c02c3e802771f4feae8659-l.woff2") format("woff2"), url("https://fonts.chanel.com/k/4557ee3c5c7e229667c02c3e802771f4feae8659-d.woff") format("woff"), url("https://fonts.chanel.com/k/4557ee3c5c7e229667c02c3e802771f4feae8659-a.otf") format("opentype");
+        font-style: normal;
+        font-weight: 600
+    }
+
+    @font-face {
+        font-family: 'Prompt-500';
+        src: url('./fonts/Prompt-Medium.woff2') format('woff2'),
+            url('./fonts/Prompt-Medium.woff') format('woff'),
+            url('./fonts/Prompt-Medium.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: 'Prompt-600';
+        src: url('./fonts/Prompt-SemiBold.woff2') format('woff2'),
+            url('./fonts/Prompt-SemiBold.woff') format('woff'),
+            url('./fonts/Prompt-SemiBold.ttf') format('truetype');
+    }
+
+    @import url(//db.onlinewebfonts.com/c/63137a821976b7fdfcf941ab1528cb19?family=AG_Helvetica);
+
+    .abchanel-corpo {
+        font-family: 'abchanel-corpo-semibold', sans-serif;
+    }
+
+    .abchanel-corpo {
+        font-family: 'abchanel-corpo', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    h7,
+    .caption,
+    .subtitle {
+        color: var(--black_2);
+        font-family: 'abchanel-corpo-semibold', sans-serif;
+        font-weight: 600;
+        letter-spacing: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    h1 {
+        color: black;
+        font-size: 25px;
+        line-height: 31px;
+    }
+
+    h2 {
+        font-size: 20px;
+        line-height: 26px;
+    }
+
+    h3 {
+        font-size: 20px;
+        line-height: 26px;
+    }
+
+    h4 {
+        font-size: 20px;
+        line-height: 26px;
+    }
+
+    h5 {
+        font-size: 16px;
+        line-height: 23px;
+    }
+
+    h6 {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    h7 {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .caption {
+        font-size: 11px;
+        line-height: 14px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    button {
+        font-family: 'abchanel-corpo-semibold', sans-serif;
+        font-size: 11px;
+        line-height: 14px;
+        font-weight: 600;
+        /* letter-spacing: 0; */
+        transition: 0.2s;
+        cursor: pointer;
+        box-sizing: border-box;
+        text-align: center;
+        box-sizing: border-box;
+        /* border: 1px solid var(--black_1); */
+        border: none;
+    }
+
+    img {
+        image-rendering: optimizeSpeed;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: optimize-contrast;
+        image-rendering: pixelated;
+        -ms-interpolation-mode: nearest-neighbor;
+    }
+
+    a {
+        font-family: 'abchanel-corpo-semibold', sans-serif;
+        font-size: 11px;
+        line-height: 18px;
+        font-weight: 600;
+        letter-spacing: 0;
+        color: var(--black_2);
+        border-bottom: 1px solid var(--black_2);
+        cursor: pointer;
+        transition: 0.5s;
+        text-decoration: none;
+    }
+
+    a:hover {
+        border-bottom: 1px solid var(--white_1);
+    }
+
+    p {
+        padding: 0;
+        margin: 0;
+        line-height: 23px;
+    }
+
+    input {
+        cursor: pointer;
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+    }
+
+    .btn-primary,
+    .btn-primary-fw {
+        font-size: 11px;
+        color: var(--white_2);
+        background-color: var(--black_1);
+        padding: 16px 21px 18px 21px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .btn-primary-fw {
+        width: 100%;
+    }
+
+    .btn-primary:hover,
+    .btn-primary-fw:hover {
+        color: #FFFFFF;
+        background: #767676;
+        /* border: 1px solid #767676; */
+    }
+
+    .btn-primary:disabled,
+    .btn-primary-fw:disabled {
+        color: #929292;
+        background: var(--white_2);
+        padding: 15px 21px 17px 21px;
+        border: 1px solid #D8D8D8;
+        pointer-events: none;
+    }
+
+    .btn-secondary,
+    .btn-secondary-fw {
+        color: #1D1D1D;
+        border: 1px solid #1D1D1D;
+        padding: 15px 21px 17px 21px;
+        /* 15px and 17px because -1px border */
+        text-align: center;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    .btn-secondary-fw {
+        width: 100%;
+    }
+
+    .btn-secondary:hover,
+    .btn-secondary-fw:hover {
+        color: #1D1D1D;
+        background: #F1F1F1;
+        border: 1px solid #F1F1F1;
+    }
+
+    .btn-secondary:disabled,
+    .btn-secondary-fw:disabled {
+        color: #929292;
+        background: var(--white_2);
+        border: 1px solid #D8D8D8;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .f-rcc {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .f-rcs {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .f-rce {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-end;
+        flex-wrap: wrap;
+    }
+
+    .f-rec {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .f-rss {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .f-rsbc {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .f-ccc {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .m-tb-2 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .m-t-4 {
+        margin-top: 40px;
+    }
+
+    .m-t-6 {
+        margin-top: 60px;
+    }
+
+    .m-t-8 {
+        margin-top: 80px;
+    }
+
+    .m-r-2 {
+        margin-right: 20px;
+    }
+
+    .t-c {
+        text-align: center;
+    }
+
+    .content-container {
+        width: 100%;
+        padding: 0 32px;
+    }
+
+    .container-1 {
+        width: 100%;
+        padding-top: 20px;
+        padding-bottom: 19px;
+        box-sizing: border-box;
+    }
+
+    .container-2,
+    .container-3,
+    .container-4 {
+        margin-top: 32px;
+        margin-bottom: 24px;
+    }
+
+    .container-3 {
+        margin-bottom: 32px;
+    }
+
+    .container-4 {
+        margin-bottom: 16px;
+    }
+
+    .container-5 {
+        margin-top: 40px;
+        margin-bottom: 16px;
+    }
+
+    .container-6 {
+        margin-top: 20px;
+    }
+
+    .top-black-bar {
+        width: 100%;
+        height: 8px;
+        background-color: #000000;
+    }
+
+    .logo-text-chanel {
+        height: 16px;
+    }
+
+    .main-banner {
+        width: 318px;
+        height: 318px;
+        margin-top: 40px;
+        margin-bottom: 56px;
+    }
+
+    .main-banner-mobile {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .main-banner-tablet {
+        display: none;
+    }
+
+    .main-banner-desktop {
+        display: none;
+    }
+
+    .label,
+    .label-active {
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.1px;
+        color: var(--gray_6);
+        margin-bottom: calc(9x - (25px - 14px / 2));
+        /* 25px line height - 14px font size / 2 to find free space at the top and bottom */
+        transition: 0.3s;
+        position: relative;
+        z-index: 0;
+    }
+
+    .label {
+        transform: translate(0, 19.5px);
+    }
+
+    .label-active {
+        font-size: 15px;
+        transform: translate(0);
+    }
+
+    .error-message {
+        margin-top: 4px;
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 16px;
+        letter-spacing: 0.1px;
+        color: var(--red_2);
+    }
+
+    .input-error {
+        border-bottom: 1px solid var(--red_2) !important;
+    }
+
+    .error-message-dummy {
+        width: 100%;
+        height: 20px;
+        display: none;
+    }
+
+    .dob {
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        color: var(--black_1);
+        margin-bottom: 40px;
+        margin-top: 56px;
+    }
+
+    .language-th {
+        font-family: 'Prompt-500', sans-serif;
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 500;
+        letter-spacing: 0.7px;
+        text-align: center;
+        color: var(--gray_5);
+    }
+
+    .language-th-active {
+        font-family: 'Prompt-600', sans-serif;
+        color: var(--black_2) !important;
+        font-weight: 600 !important;
+        border-bottom: 1px solid var(--black_2);
+    }
+
+    .language-en {
+        font-family: 'abchanel-corpo-semibold', sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: normal;
+        text-align: center;
+        color: var(--gray_5);
+        width: 21px;
+    }
+
+    .language-en-active {
+        color: var(--black_2) !important;
+        font-weight: 600 !important;
+        border-bottom: 1px solid var(--black_2);
+    }
+
+    .btn-explore-more {
+        margin-top: 44px;
+        margin-bottom: 72px;
+    }
+
+    .text-1 {
+        color: var(--black_3);
+        line-height: 23px;
+        margin-bottom: 56px
+    }
+
+    .text-2 {
+        font-family: 'abchanel-corpo-semibold', sans-serif;
+        font-size: 16px;
+        line-height: 23px;
+        text-align: center;
+        font-weight: 600;
+        color: var(--black_2);
+    }
+
+    .text-3 {
+        font-family: 'abchanel-corpo-semibold', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 18px;
+        text-align: center;
+        color: var(--gray_6);
+    }
+
+    .text-4 {
+        font-family: 'abchanel-corpo', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: 0px;
+        text-align: center;
+        color: var(--black_2);
+    }
+
+    .text-5 {
+        font-family: 'abchanel-corpo', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 18px;
+        text-align: center;
+        color: var(--black_2);
+    }
+
+    .text-6 {
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        text-align: center;
+        color: var(--black_2);
+    }
+
+    .text-7 {
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 23px;
+        letter-spacing: 0.1px;
+        text-align: center;
+        color: var(--black_2);
+    }
+
+    .text-8 {
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 16px;
+        letter-spacing: 0px;
+        text-align: center;
+        color: var(--gray_6);
+    }
+
+    .hr-1 {
+        width: 80px;
+        height: 2px;
+        background-color: black;
+    }
+
+    .text-incative {
+        color: var(--gray_2) !important;
+    }
+
+    .date-and-time-container>div {
+        width: 100%;
+        margin-bottom: 36px;
+    }
+
+    .date-and-time-container>div:last-child {
+        margin-bottom: 0;
+    }
+
+    .link-1 {
+        line-height: 14px;
+        height: 16px;
+        padding-bottom: 2px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .error-page {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        z-index: 2000;
+    }
+
+    .error-page>img {
+        height: 16px;
+        margin-bottom: 16px;
+    }
+
+    .btn-plus,
+    .btn-minus {
+        color: #1D1D1D;
+        border: 1px solid #1D1D1D;
+        padding: 0;
+        width: 40px !important;
+        height: 40px !important;
+        background: transparent;
+        background-size: 24px 24px;
+        background-image: url(./assets/icon-plus-active.svg) !important;
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+
+    .btn-plus:hover,
+    .btn-minus:hover {
+        color: #1D1D1D;
+        background-size: 24px 24px !important;
+        background: #F1F1F1;
+        background-position: center;
+        border: 1px solid #F1F1F1;
+    }
+
+    .btn-minus {
+        background-image: url(./assets/icon-minus-active.svg) !important;
+        background-position: center;
+    }
+
+    .btn-plus:disabled {
+        background-image: url(./assets/icon-plus-disabled.svg) !important;
+        background-position: center;
+        border: 1px solid #D8D8D8;
+        pointer-events: none;
+    }
+
+    .btn-minus:disabled {
+        background-image: url(./assets/icon-minus-disabled.svg) !important;
+        background-position: center;
+        border: 1px solid #D8D8D8;
+        pointer-events: none;
+    }
+
+    @media screen and (min-width: 600px) {
+        h1 {
+            font-size: 30px;
+            line-height: 36px;
+        }
+
+        h2 {
+            font-size: 25px;
+            line-height: 31px;
+        }
+
+        h3 {
+            font-size: 25px;
+            line-height: 31px;
+        }
+
+        .content-container {
+            width: 500px;
+            padding: 0;
+        }
+
+        .container-1 {
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+
+        .container-2 {
+            margin-top: 36px;
+        }
+
+        .container-4 {
+            margin-top: 36px;
+        }
+
+        .container-5 {
+            margin-top: 44px;
+        }
+
+        .container-6 {
+            margin-top: 24px;
+        }
+
+        .main-banner-mobile {
+            display: none;
+        }
+
+        .main-banner-tablet {
+            display: block;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .date-and-time-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .date-and-time-container>div {
+            width: 242px;
+            margin-bottom: 0;
+        }
+
+        .error-page>img {
+            height: 20px;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        h1 {
+            font-size: 40px;
+            line-height: 45px;
+        }
+
+        h2 {
+            font-size: 30px;
+            line-height: 36px;
+        }
+
+        h3 {
+            font-size: 25px;
+            line-height: 31px;
+        }
+
+        .container-1 {
+            padding-top: 28px;
+            padding-bottom: 28px;
+        }
+
+        .container-2 {
+            margin-top: 40px;
+        }
+
+        .container-4 {
+            margin-top: 40px;
+        }
+
+        .container-5 {
+            margin-top: 48px;
+        }
+
+        .logo-text-chanel {
+            height: 28px;
+        }
+
+        .main-banner-tablet {
+            display: none;
+        }
+
+        .main-banner-desktop {
+            display: block;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .error-page>img {
+            height: 24px;
+        }
+    }
+</style>
+
+<!-- dropdown -->
+<style>
+    .dropdown,
+    .dropdown-inner,
+    .dropdown-inner input {
+        position: relative;
+        width: 100%;
+        border: none;
+        outline: none;
+    }
+
+    .dropdown {
+        height: 46px;
+    }
+
+    .dropdown-inner {
+        height: 46px;
+        background: url(./assets/icon-arrow-down.svg) no-repeat;
+        background-position-x: 100%;
+        background-position-y: 29px;
+    }
+
+    .dropdown-inner input {
+        height: 22px;
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        text-align: left;
+        color: var(--black_2);
+        background-color: transparent;
+        padding-right: 20px;
+        padding-left: 0;
+        padding-bottom: 4px;
+        box-sizing: border-box;
+        transform: translate(0, 23px);
+        cursor: pointer;
+    }
+
+    .dropdown-inner::after {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 1px);
+        content: '';
+        width: 100%;
+        height: 1px;
+        background-color: var(--gray_2);
+    }
+
+    .dropdown-inner:hover::after {
+        background-color: transparent;
+    }
+
+    .dropdown-inner-open {
+        background: url(./assets/icon-arrow-up.svg) no-repeat;
+        background-position-x: 100%;
+        background-position-y: 29px;
+    }
+
+    .dropdown-inner-active {
+        background: url(./assets/icon-arrow-down-active.svg) no-repeat;
+        background-position-x: 100%;
+        background-position-y: 29px;
+    }
+
+    .dropdown-inner-disabled {
+        background: url(./assets/icon-arrow-down-inactive.svg) no-repeat;
+        background-position-x: 100%;
+        background-position-y: 29px;
+    }
+
+    .dropdown::after {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 1px);
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: rgb(29, 29, 29, 0);
+        transition: 0.5s;
+    }
+
+    .dropdown-active::after {
+        height: 2px;
+        background-color: rgb(29, 29, 29, 1);
+    }
+
+    .dropdown-label {
+        position: absolute;
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        text-align: left;
+        color: var(--gray_6);
+        top: 23px;
+        transition: 0.3s;
+    }
+
+    .dropdown-label-active {
+        font-size: 12px;
+        line-height: 15px;
+        top: 0;
+    }
+
+    .dropdown-items-container {
+        display: none;
+        position: absolute;
+        top: calc(100% + 3px);
+        left: 0;
+        width: 100%;
+        max-height: 180px;
+        overflow: hidden;
+        overflow-y: auto;
+        box-sizing: border-box;
+        background-color: white;
+        border-left: 1px solid var(--gray_2);
+        border-right: 1px solid var(--gray_2);
+        border-bottom: 2px solid var(--gray_2);
+        z-index: 100;
+    }
+
+    .dropdown-items-container div {
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        text-align: left;
+        color: var(--black_3);
+        padding: 9px 18px;
+        height: 36px;
+        cursor: pointer;
+        transition: 0.2s;
+        box-sizing: border-box;
+    }
+
+    .dropdown-items-container div:hover {
+        background-color: var(--white_2);
+    }
+
+    .dropdown-item-active {
+        color: var(--black_2) !important;
+    }
+
+    /* .dropdown-items-container::after {
+        content: '';
+        width: 100%;
+        height: 10px;
+        background-color: transparent;
+        position: absolute;
+    } */
+
+    .dropdown-inactive {
+        position: relative;
+        height: 46px;
+        background: url(./assets/icon-arrow-down-inactive.svg) no-repeat;
+        background-position-x: 100%;
+        background-position-y: 29px;
+    }
+
+    .dropdown-inactive::after {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 1px);
+        content: '';
+        width: 100%;
+        height: 1px;
+        background-color: var(--gray_2);
+    }
+
+    .timeslot-mobile {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 260px;
+        width: 100%;
+        background-color: white;
+        z-index: 500;
+    }
+
+    .timeslot-mobile-header {
+        position: relative;
+        height: 46px;
+        background-color: var(--white_2);
+        border-top: 1px solid #D8D8D8;
+        border-bottom: 1px solid #D8D8D8;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .timeslot-mobile-header div {
+        color: skyblue;
+    }
+
+    .timeslot-mobile-items-container {
+        position: relative;
+        height: 210px;
+        overflow: hidden;
+        overflow-y: auto;
+        padding: 90px 0;
+        box-sizing: border-box;
+    }
+
+    .timeslot-mobile-items-container div {
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    .timeslot-mobile-target {
+        position: fixed;
+        bottom: 93px;
+        left: 0;
+        width: 100%;
+        height: 30px;
+        border-top: 1px solid #D8D8D8;
+        border-bottom: 1px solid #D8D8D8;
+        z-index: 600;
+    }
+
+    .timeslot-mobile-fade {
+        -webkit-mask-image: -webkit-radial-gradient(center, 100% 100px, black, transparent 100%);
+        mask-image: radial-gradient(100% 50px at center, transparent 100%);
+    }
+
+
+    @media screen and (min-width: 600px) {
+        .dropdown-items-container {
+            border-bottom: 1px solid var(--gray_2);
+        }
+    }
+</style>
+
+<!-- input box -->
+<style>
+    .inputbox,
+    .inputbox-inner,
+    .inputbox-inner input,
+    .inputbox-inner textarea {
+        position: relative;
+        width: 100%;
+        border: none;
+        outline: none;
+    }
+
+    .inputbox {
+        height: 46px;
+    }
+
+    .inputbox-inner {
+        height: 46px;
+    }
+
+    .inputbox-textarea {
+        height: auto;
+        min-height: 46px;
+    }
+
+    .inputbox-inner input,
+    .inputbox-inner textarea {
+        height: 22px;
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        text-align: left;
+        color: var(--black_2);
+        background-color: transparent;
+        padding-right: 0;
+        padding-left: 0;
+        padding-bottom: 4px;
+        box-sizing: border-box;
+        transform: translate(0, 23px);
+        cursor: pointer;
+    }
+
+    .inputbox-inner textarea {
+        /* height: auto;
+        min-height: 22px; */
+        overflow: hidden;
+        resize: none;
+    }
+
+    .inputbox-inner::after {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 1px);
+        content: '';
+        width: 100%;
+        height: 1px;
+        background-color: var(--gray_2);
+    }
+
+    .inputbox-inner:hover::after {
+        background-color: transparent;
+    }
+
+    .inputbox::after {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 1px);
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: rgb(29, 29, 29, 0);
+        transition: 0.5s;
+    }
+
+    .inputbox-active::after {
+        height: 2px;
+        background-color: rgb(29, 29, 29, 1);
+    }
+
+    .inputbox-label {
+        position: absolute;
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        text-align: left;
+        color: var(--gray_6);
+        top: 23px;
+        transition: 0.3s;
+    }
+
+    .inputbox-label-active {
+        font-size: 12px;
+        line-height: 15px;
+        top: 0;
+    }
+</style>
+
+<!-- datepicker -->
+<style>
+    .datepicker,
+    .datepicker-inner,
+    .datepicker-inner input {
+        position: relative;
+        width: 100%;
+        border: none;
+        outline: none;
+    }
+
+    .datepicker {
+        height: 46px;
+    }
+
+    .datepicker-inner {
+        height: 46px;
+        background: url(./assets/icon-calendar.svg) no-repeat;
+        background-position-x: 100%;
+        background-position-y: 22px;
+    }
+
+    .datepicker-inner input {
+        height: 22px;
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        text-align: left;
+        color: var(--black_2);
+        background-color: transparent;
+        padding-right: 20px;
+        padding-left: 0;
+        padding-bottom: 4px;
+        box-sizing: border-box;
+        transform: translate(0, 23px);
+        cursor: pointer;
+    }
+
+    .datepicker-inner::after {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 1px);
+        content: '';
+        width: 100%;
+        height: 1px;
+        background-color: var(--gray_2);
+    }
+
+    .datepicker-inner-active {
+        background: url(./assets/icon-calendar-active.svg) no-repeat;
+        background-position-x: 100%;
+        background-position-y: 22px;
+    }
+
+    .datepicker-inner-active::after {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 1px);
+        content: '';
+        width: 100%;
+        height: 1px;
+        background-color: transparent;
+    }
+
+    .datepicker-inner-disabled {
+        background: url(./assets/icon-calendar-disabled.svg) no-repeat;
+        background-position-x: 100%;
+        background-position-y: 22px;
+    }
+
+    .datepicker::after {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 1px);
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: rgb(29, 29, 29, 0);
+        transition: 0.5s;
+    }
+
+    .datepicker-active::after {
+        height: 2px;
+        background-color: rgb(29, 29, 29, 1);
+    }
+
+    .datepicker-label {
+        position: absolute;
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        text-align: left;
+        color: var(--gray_6);
+        top: 23px;
+        transition: 0.3s;
+    }
+
+    .datepicker-label-active {
+        font-size: 12px;
+        line-height: 15px;
+        top: 0;
+    }
+
+    .datepicker-mobile {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(29, 29, 29, 0.6);
+        z-index: 1000;
+    }
+
+    .datepicker-mobile-card {
+        width: 100%;
+        padding-top: 32px;
+        height: 403px;
+        /* padding-bottom: 55px; */
+        box-sizing: border-box;
+        background-color: white;
+        z-index: 1001;
+    }
+
+    .datepicker-header {
+        margin-bottom: 32px;
+    }
+
+    .datepicker-button-next {
+        width: 24px;
+        height: 23px;
+        background: url(./assets/icon-arrow-date-right.svg) no-repeat;
+        background-size: 6px 10px;
+        background-position: center;
+        cursor: pointer;
+    }
+
+    .datepicker-header img {
+        object-fit: contain;
+    }
+
+    .datepicker-mobile-container {
+        width: 350px;
+    }
+
+    .datepicker-day {
+        font-family: 'abchanel-corpo-semibold', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--black_2);
+        line-height: 23px;
+        letter-spacing: 0px;
+        text-align: center;
+    }
+
+    .datepicker-date {
+        position: relative;
+        font-size: 16px;
+        text-align: center;
+        color: var(--black_2);
+    }
+
+    .datepicker-date-desktop {
+        position: relative;
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        color: var(--black_2);
+        text-align: center;
+    }
+
+    .datepicker-date-active {
+        background-color: var(--black_2);
+        color: white !important;
+        border-radius: 50%;
+        transform: translate(-8px, -8px);
+    }
+
+    .datepicker-date-disable {
+        color: var(--gray_5) !important;
+        pointer-events: none;
+    }
+
+    .datepicker-mobile-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 14px;
+        height: 14px;
+        background: url(./assets/icon-close-white.svg) no-repeat;
+        background-size: cover;
+        cursor: pointer;
+    }
+
+    .datepicker-month-mobile,
+    .datepicker-month-desktop {
+        font-family: 'abchanel-corpo-semibold', sans-serif;
+        font-size: 20px;
+        line-height: 26px;
+        font-weight: 600;
+    }
+
+    .datepicker-desktop {
+        display: none;
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        width: 100%;
+        padding-top: 23px;
+        /* padding-bottom: 42px; */
+        height: 310px;
+        box-sizing: border-box;
+        background-color: white;
+        border-left: 1px solid var(--gray_2);
+        border-right: 1px solid var(--gray_2);
+        border-bottom: 1px solid var(--gray_2);
+        z-index: 100;
+    }
+
+    .datepicker-desktop .datepicker-header {
+        margin-bottom: 16px;
+    }
+
+    .datepicker-desktop-container {
+        width: 210px;
+    }
+
+    .datepicker-month-desktop {
+        font-family: 'abchanel-corpo-semibold', sans-serif;
+        font-size: 12px;
+        line-height: 24px;
+        font-weight: 600;
+        letter-spacing: 0px;
+        color: var(--black_2);
+        text-align: center;
+    }
+
+    .datepicker-day-desktop {
+        font-family: 'abchanel-corpo-semibold', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 18px;
+        letter-spacing: 0px;
+        color: var(--black_2);
+        text-align: center;
+    }
+
+    .datepicker-date-desktop {
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        color: var(--black_2);
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .datepicker-date-active-desktop {
+        background-color: var(--black_2);
+        color: white !important;
+        border-radius: 50%;
+        transform: translate(-2px, -5px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .datepicker-inactive {
+        background: url(./assets/icon-calendar-disabled.svg) no-repeat;
+        background-position-x: 100%;
+        background-position-y: 22px;
+    }
+</style>
+
+<!-- scroll bar -->
+<style>
+    /* width */
+    ::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #F9F9F9;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #D8D8D8;
+        height: 57px;
+        border-radius: 100px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #D8D8D8;
+    }
+</style>
+
+<!-- popup -->
+<style>
+    .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(29, 29, 29, 0.6);
+        z-index: 1000;
+    }
+
+    .popup-card {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 45px;
+        box-sizing: border-box;
+        background-color: white;
+    }
+
+    .popup-card>img {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 14px;
+        height: 14px;
+        cursor: pointer;
+    }
+
+    .popup-text-1 {
+        font-family: 'Helvetica', 'AG_Helvetica';
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 18px;
+        letter-spacing: 0.1px;
+        text-align: center;
+        color: var(--black_3);
+    }
+
+    @media screen and (min-width: 600px) {
+        .popup-card {
+            position: relative;
+            width: 375px;
+        }
+
+        .popup-card>img {
+            top: 18px;
+            right: 18px;
+        }
+    }
+</style>
+
+<html>
+
+<head>
+    <title>CHANEL | Event Reservation</title>
+</head>
+
+<body id="body">
+    <div class="top-black-bar"></div>
+
+    <div class="f-rcc container-1">
+        <img src="./assets/logo-text-chanel.svg" alt="logo text chanel" class="logo-text-chanel">
+    </div>
+
+    <div class="f-rcc">
+        <img src="./assets/main-banner-mobile.svg" alt="logo chanel" class="main-banner-mobile">
+        <img src="./assets/main-banner-tablet.svg" alt="logo chanel" class="main-banner-tablet">
+        <img src="./assets/main-banner-desktop.svg" alt="logo chanel" class="main-banner-desktop">
+    </div>
+
+    <!-- EVENT RSVP PAGE -->
+    <!-- set to display style="display: flex; to show -->
+    <div class="f-rcc" style="display: flex;">
+        <div class="content-container">
+            <!-- Reservation single location -->
+            <!-- set to display style="display: block; to show -->
+            <div style="display: block;">
+                <div class="f-rcs container-6">
+                    <!-- please use language-en-active class when active -->
+                    <div class="language-en language-en-active m-r-2">EN</div>
+
+                    <!-- please use language-th-active class when active -->
+                    <div class="language-th">ไทย</div>
+                </div>
+
+                <h1 class="t-c container-2">Your Invitation Event Name</h1>
+
+                <div class="t-c text-1">
+                    CHANEL invites you to indulge in an experience at a CHANEL fragrance and beauty boutique from March
+                    to
+                    July 2022. During this complimentary 30 minutes ceremony, you will discover Pollux through a
+                    personalized ritual.</div>
+
+                <div class="text-2" style="margin-bottom: 8px;">Boutique Name</div>
+
+                <div class="text-3" style="margin-bottom: 48px;">Macquarie center level 2,<br /> 175 herring road</div>
+
+                <div class="f-rcc" style="margin-bottom: 48px;">
+                    <div class="hr-1"></div>
+                </div>
+
+                <div class="text-2" style="margin-bottom: 24px;">Please Select Date And Time slot</div>
+
+                <div class="date-and-time-container">
+                    <!-- set display to 'block' if date is oneday event set datepicker_1_inactive & datepicker_1 display to 'none' -->
+                    <div id="datepicker_1_preselected" class="datepicker" style="display: none;">
+                        <div class="datepicker-label datepicker-label-active">Date</div>
+                        <div class="datepicker-inner datepicker-inner-active" style="background: none;">
+                            <!-- input id string must contain datepicker id string -->
+                            <input id="input_datepicker_1_preselected" value="March, 19th Sat" type="text"
+                                style="pointer-events: none;" required />
+                        </div>
+                    </div>
+
+                    <div id="datepicker_1" class="datepicker" onmouseover="datepickerOnmouseover('datepicker_1')"
+                        onmouseout="datepickerOnmouseout('datepicker_1')" style="display: block;">
+                        <div class="datepicker-label">Select date*</div>
+                        <div class="datepicker-inner">
+                            <!-- input id string must contain datepicker id string -->
+                            <input id="input_datepicker_1" type="text" onfocus="onDatepickerFocus('datepicker_1')"
+                                onfocusout="onDatepickerFocusOut('datepicker_1')" required />
+                        </div>
+
+                        <div class="f-rcs datepicker-desktop">
+                            <div class="datepicker-desktop-container">
+                                <div class="f-rsbc datepicker-header">
+                                    <div id="datepicker_mobile_month_prev_dummy" style="width: 6px; display: none;">
+                                    </div>
+                                    <div class="datepicker-button-next" style="transform: rotate(180deg);"
+                                        onclick="datepickerPrevMonth('desktop')"></div>
+                                    <div id="datepicker_mobile_month" class="datepicker-month-desktop">Month</div>
+                                    <div class="datepicker-button-next" onclick="datepickerNextMonth('desktop')"></div>
+                                </div>
+
+                                <div id="datepicker_mobile_tiles" class="f-rss">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="dropdown_1_inactive" class="dropdown-inactive" style="display: block">
+                        <div class="dropdown-label text-incative">Select time slot*</div>
+                    </div>
+
+                    <div id="dropdown_1" class="dropdown" onmouseover="onDropdownMouseover('dropdown_1')"
+                        onmouseout="onDropdownMouseout('dropdown_1')" style="display: none">
+                        <div class="dropdown-label">Select time slot*</div>
+                        <div class="dropdown-inner">
+                            <!-- input id string must contain 'dropdown' id string -->
+                            <input id="input_dropdown_1" type="text" required onfocus="onDropdownFocus('dropdown_1')" />
+                        </div>
+                        <div class="dropdown-items-container">
+                            <!-- item must use class 'item' -->
+                            <div class="item">option 1</div>
+                            <div class="item">option 2</div>
+                            <div class="item">option 3</div>
+                            <div class="item">option 4</div>
+                            <div class="item">option 5</div>
+                            <div class="item">option 6</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-2" style="margin-top: 68px; margin-bottom: 24px;">Please select your preference</div>
+
+                <div class="text-6" style="margin-bottom: 24px;">I would like to bring a friend(s) with me.</div>
+
+                <div class="f-rcc" style="margin-bottom: 16px;">
+                    <button class="f-ccc btn-minus" disabled onclick="minusFriend('friend_count_1')">
+                    </button>
+                    <div id="friend_count_1" class="text-7" style="margin: 0 48px;">0</div>
+                    <button class="f-ccc btn-plus" onclick="addFriend('friend_count_1')">
+                    </button>
+                </div>
+
+                <div class="text-8" style="margin-bottom: 40px;">Maximum 2 friends.</div>
+
+                <div id="inputbox_1" class="inputbox inputbox-textarea" onmouseover="onInputboxMouseover('inputbox_1')"
+                    onmouseout="onInputboxMouseout('inputbox_1')">
+                    <div class="inputbox-label">Special requests</div>
+                    <div class="inputbox-inner inputbox-textarea">
+                        <!-- input id string must contain 'inputbox' id string -->
+                        <textarea id="input_inputbox_1" type="text" maxlength="200" required
+                            onfocus="onInputboxFocus('inputbox_1')" onfocusout="onInputboxFocusOut('inputbox_1')"
+                            onkeyup="onInputKeyUp('input_inputbox_1', event)"></textarea>
+                    </div>
+                </div>
+
+                <div class="text-8" style="text-align: right; margin-top: 27px;"><span
+                        id="characters_remaining_1">200</span>/200 characters remaining</div>
+
+                <div class="f-rcc">
+                    <button id="btn_confirm_single_location" class="btn-primary-fw btn-explore-more"
+                        style="margin-top: 40px;" disabled>CONFIRM</button>
+                </div>
+            </div>
+
+            <!-- Reservation multiple location -->
+            <!-- set to display style="display: block; to show -->
+            <div style="display: none;">
+                <div class="f-rcs container-6">
+                    <!-- please use language-en-active class when active -->
+                    <div class="language-en language-en-active m-r-2">EN</div>
+
+                    <!-- please use language-th-active class when active -->
+                    <div class="language-th">ไทย</div>
+                </div>
+
+                <h1 class="t-c container-3">Your Invitation Event Name</h1>
+
+                <div class="t-c text-1">
+                    CHANEL invites you to indulge in an experience at a CHANEL fragrance and beauty boutique from
+                    March
+                    to
+                    July 2022. During this complimentary 30 minutes ceremony, you will discover Pollux through a
+                    personalized ritual.</div>
+
+                <div class="f-rcc" style="margin-bottom: 56px;">
+                    <div class="hr-1"></div>
+                </div>
+
+                <div class="text-2" style="margin-bottom: 24px;">Please Select Your Preferred <br /> Chanel Fragrance
+                    and
+                    Beauty Boutique</div>
+
+                <div id="dropdown_2" class="dropdown" style="margin-bottom: 36px;"
+                    onmouseover="onDropdownMouseover('dropdown_2')" onmouseout="onDropdownMouseout('dropdown_2')">
+                    <div class="dropdown-label">Select state*</div>
+                    <div class="dropdown-inner">
+                        <!-- input id string must contain 'dropdown' id string -->
+                        <input id="input_dropdown_2" type="text" onfocus="onDropdownFocus('dropdown_2')" required />
+                    </div>
+                    <div class="dropdown-items-container">
+                        <!-- item must use class 'item' -->
+                        <div class="item">option 1</div>
+                        <div class="item">option 2</div>
+                        <div class="item">option 3</div>
+                        <div class="item">option 4</div>
+                        <div class="item">option 5</div>
+                        <div class="item">option 6</div>
+                    </div>
+                </div>
+
+                <div id="dropdown_3_inactive" class="dropdown-inactive" style="display: block; margin-bottom: 68px;">
+                    <div class="dropdown-label text-incative">Select boutique*</div>
+                </div>
+
+                <div id="dropdown_3" class="dropdown" style="display: none; margin-bottom: 68px;"
+                    onmouseover="onDropdownMouseover('dropdown_3')" onmouseout="onDropdownMouseout('dropdown_3')">
+                    <div class="dropdown-label">Select boutique*</div>
+                    <div class="dropdown-inner">
+                        <!-- input id string must contain 'dropdown' id string -->
+                        <input id="input_dropdown_3" type="text" onfocus="onDropdownFocus('dropdown_3')" required />
+                    </div>
+                    <div class="dropdown-items-container">
+                        <!-- item must use class 'item' -->
+                        <div class="item">option 1</div>
+                        <div class="item">option 2</div>
+                        <div class="item">option 3</div>
+                        <div class="item">option 4</div>
+                        <div class="item">option 5</div>
+                        <div class="item">option 6</div>
+                    </div>
+                </div>
+
+                <div id="date_and_time_2" class="text-2" style="margin-bottom: 24px; color: #D8D8D8;">Please Select Date
+                    And Time slot</div>
+
+                <div class="date-and-time-container">
+                    <!-- set display to 'block' if date is oneday event ad set datepicker_2_inactive & datepicker_2 display to 'none' -->
+                    <div id="datepicker_2_preselected" class="datepicker" style="display: none;">
+                        <div class="datepicker-label datepicker-label-active">Date</div>
+                        <div class="datepicker-inner datepicker-inner-active" style="background: none;">
+                            <!-- input id string must contain datepicker id string -->
+                            <input id="input_datepicker_2_preselected" value="March, 19th Sat" type="text"
+                                style="pointer-events: none;" required />
+                        </div>
+                    </div>
+
+                    <div id="datepicker_2_inactive" class="dropdown-inactive datepicker-inactive"
+                        style="display: block">
+                        <div class="dropdown-label text-incative">Select date*</div>
+                    </div>
+
+                    <div id="datepicker_2" class="datepicker" style="display: none;"
+                        onmouseover="datepickerOnmouseover('datepicker_2')"
+                        onmouseout="datepickerOnmouseout('datepicker_2')">
+                        <div class="datepicker-label">Select date*</div>
+                        <div class="datepicker-inner">
+                            <!-- input id string must contain datepicker id string -->
+                            <input id="input_datepicker_2" type="text" onfocus="onDatepickerFocus('datepicker_2')"
+                                onfocusout="onDatepickerFocusOut('datepicker_2')" required />
+                        </div>
+
+                        <div class="f-rcs datepicker-desktop">
+                            <div class="datepicker-desktop-container">
+                                <div class="f-rsbc datepicker-header">
+                                    <div id="datepicker_mobile_month_prev_dummy" style="width: 6px; display: none;">
+                                    </div>
+                                    <div class="datepicker-button-next" style="transform: rotate(180deg);"
+                                        onclick="datepickerPrevMonth('desktop')"></div>
+                                    <div id="datepicker_mobile_month" class="datepicker-month-desktop">Month</div>
+                                    <div class="datepicker-button-next" onclick="datepickerNextMonth('desktop')">
+                                    </div>
+                                </div>
+
+                                <div id="datepicker_mobile_tiles" class="f-rss">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="dropdown_4_inactive" class="dropdown-inactive" style="display: block">
+                        <div class="dropdown-label text-incative">Select time slot*</div>
+                    </div>
+
+                    <div id="dropdown_4" class="dropdown timeslot" onmouseover="onDropdownMouseover('dropdown_4')"
+                        onmouseout="onDropdownMouseout('dropdown_4')" style="display: none">
+                        <div class="dropdown-label">Select time slot*</div>
+                        <div class="dropdown-inner">
+                            <!-- input id string must contain 'dropdown' id string -->
+                            <input id="input_dropdown_4" type="text" onfocus="onDropdownFocus('dropdown_4')" required />
+                        </div>
+                        <div class="dropdown-items-container">
+                            <!-- item must use class 'item' -->
+                            <div class="item">option 1</div>
+                            <div class="item">option 2</div>
+                            <div class="item">option 3</div>
+                            <div class="item">option 4</div>
+                            <div class="item">option 5</div>
+                            <div class="item">option 6</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-2" style="margin-top: 68px; margin-bottom: 24px;">Please select your preference</div>
+
+                <div class="text-6" style="margin-bottom: 24px;">I would like to bring a friend(s) with me.</div>
+
+                <div class="f-rcc" style="margin-bottom: 16px;">
+                    <button class="f-ccc btn-minus" disabled onclick="minusFriend('friend_count_2')">
+                    </button>
+                    <div id="friend_count_2" class="text-7" style="margin: 0 48px;">0</div>
+                    <button class="f-ccc btn-plus" onclick="addFriend('friend_count_2')">
+                    </button>
+                </div>
+
+                <div class="text-8" style="margin-bottom: 40px;">Maximum 2 friends.</div>
+
+                <div id="inputbox_2" class="inputbox inputbox-textarea" onmouseover="onInputboxMouseover('inputbox_2')"
+                    onmouseout="onInputboxMouseout('inputbox_2')">
+                    <div class="inputbox-label">Special requests</div>
+                    <div class="inputbox-inner inputbox-textarea">
+                        <!-- input id string must contain 'inputbox' id string -->
+                        <textarea id="input_inputbox_2" type="text" maxlength="200" required
+                            onfocus="onInputboxFocus('inputbox_2')" onfocusout="onInputboxFocusOut('inputbox_2')"
+                            onkeyup="onInputKeyUp('input_inputbox_2', event)"></textarea>
+                    </div>
+                </div>
+
+                <div class="text-8" style="text-align: right; margin-top: 27px;"><span
+                        id="characters_remaining_2">200</span>/200 characters remaining</div>
+
+                <div class="f-rcc">
+                    <button id="btn_confirm_multiple_location" class="btn-primary-fw btn-explore-more"
+                        style="margin-top: 40px;" disabled>CONFIRM</button>
+                </div>
+            </div>
+
+            <!-- Comfirmation page -->
+            <!-- set to display style="display: block; to show -->
+            <div style="display: none;">
+                <div class="f-rcs container-6">
+                    <!-- please use language-en-active class when active -->
+                    <div class="language-en language-en-active m-r-2">EN</div>
+
+                    <!-- please use language-th-active class when active -->
+                    <div class="language-th">ไทย</div>
+                </div>
+
+                <h1 class="t-c container-4">Your Invitation Event Name</h1>
+
+                <div class="t-c text-1" style="margin-bottom: 48px;">Your booking has been confirmed. <br />We look
+                    forward to seeing you.</div>
+
+                <div class="f-rcc" style="margin-bottom: 48px;">
+                    <div class="hr-1"></div>
+                </div>
+
+                <div class="text-2" style="margin-bottom: 8px;">Boutique Name</div>
+
+                <div class="text-3" style="margin-bottom: 16px;">Macquarie center level 2,<br /> 175 herring road
+                </div>
+
+                <div class="text-4" style="margin-bottom: 24px;">30 June, 2022<br />11:00 - 11:30</div>
+
+                <div class="text-6" style="margin-bottom: 40px;">I would like to bring 2 friends with me.</div>
+
+                <div class="f-rcc" style="margin-bottom: 24px;">
+                    <a href="#" class="link-1">Modify your booking</a>
+                </div>
+
+                <div class="f-rcc">
+                    <a href="#" class="link-1">Cancel your booking</a>
+                </div>
+
+                <div class="f-rcc">
+                    <button class="btn-primary btn-explore-more" style="margin-top: 36px;">Discover more on
+                        CHANEl.com</button>
+                </div>
+            </div>
+
+            <!-- Confirm Cancelation page -->
+            <!-- set to display style="display: block; to show -->
+            <div style="display: none;">
+                <h1 class="t-c container-5">Your Invitation Event Name</h1>
+
+                <div class="t-c text-1">Do you want to cancel your booking?</div>
+
+                <div class="f-rcc" style="margin-bottom: 48px;">
+                    <div class="hr-1"></div>
+                </div>
+
+                <div class="text-2" style="margin-bottom: 8px;">Boutique Name</div>
+
+                <div class="text-3" style="margin-bottom: 16px;">Macquarie center level 2,<br /> 175 herring road
+                </div>
+
+                <div class="text-4">30 June, 2022<br />11:00 - 11:30</div>
+
+                <div class="f-rcc">
+                    <button class="btn-primary btn-explore-more" style="margin-top: 40px;">confirm</button>
+                </div>
+            </div>
+
+            <!-- Appointment cancelled page -->
+            <!-- set to display style="display: block; to show -->
+            <div style="display: none;">
+                <h1 class="t-c container-5">Your Invitation Event Name</h1>
+
+                <div class="t-c text-1" style="margin-bottom: 48px;">Your booking has been cancelled.</div>
+
+                <div class="f-rcc" style="margin-bottom: 48px;">
+                    <div class="hr-1"></div>
+                </div>
+
+                <div class="text-2" style="margin-bottom: 8px;">Boutique Name</div>
+
+                <div class="text-3" style="margin-bottom: 16px;">Macquarie center level 2,<br /> 175 herring road
+                </div>
+
+                <div class="text-4">30 June, 2022<br />11:00 - 11:30</div>
+
+                <div class="f-rcc">
+                    <button class="btn-primary btn-explore-more"
+                        style="width: 279px; margin-top: 40px; margin-bottom: 0;">Book another appointment</button>
+                </div>
+
+                <div class="f-rcc">
+                    <button class="btn-secondary btn-explore-more"
+                        style="width: 279px; padding: 15px 15px 17px 15px; margin-top: 24px;">Discover more on
+                        CHANEL.com</button>
+                </div>
+            </div>
+
+            <!-- NON-INVITED CLIENTS PAGE -->
+            <!-- set to display style="display: block; to show -->
+            <div style="display: none;">
+                <div class="f-rcc container-6">
+                    <!-- please use language-en-active class when active -->
+                    <div class="language-en language-en-active m-r-2">EN</div>
+
+                    <!-- please use language-th-active class when active -->
+                    <div class="language-th">ไทย</div>
+                </div>
+
+                <div class="f-rcc">
+                    <div class="text-5" style="margin-top: 72px;">Here is the message for <br /> non-invited
+                        clients.
+                    </div>
+                </div>
+
+                <div class="f-rcc">
+                    <button class="btn-primary btn-explore-more" style="margin-top: 64px;">Discover more on
+                        CHANEL.com</button>
+                </div>
+            </div>
+
+            <!-- EVENT CLOSURE PAGE -->
+            <!-- set to display style="display: block; to show -->
+            <div style="display: none;">
+                <div class="f-rcc container-6">
+                    <!-- please use language-en-active class when active -->
+                    <div class="language-en language-en-active m-r-2">EN</div>
+
+                    <!-- please use language-th-active class when active -->
+                    <div class="language-th">ไทย</div>
+                </div>
+
+                <h1 class="t-c container-3">Your Invitation Event Name</h1>
+
+                <div class="t-c text-1" style="margin-bottom: 48px;">
+                    CHANEL invites you to indulge in an experience at a CHANEL fragrance and beauty boutique from
+                    March
+                    to July, 2022. During this complimentary 30 minute ceremony, you will discover Pollux through a
+                    personalised ritual.</div>
+
+                <div class="f-rcc">
+                    <div class="text-5">The event is closed.</div>
+                </div>
+
+                <div class="f-rcc">
+                    <button class="btn-primary btn-explore-more" style="margin-top: 48px;">Discover more on
+                        CHANEL.com</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- datepicker mobile -->
+        <div id="datepicker_mobile" class="f-ccc datepicker-mobile">
+            <div class="datepicker-mobile-close" onclick="closeDatepickerMobile()"></div>
+            <div class="f-rcs datepicker-mobile-card">
+                <div class="datepicker-mobile-container">
+                    <div class="f-rsbc datepicker-header">
+                        <div id="datepicker_mobile_month_prev_dummy" style="width: 6px; display: none;"></div>
+                        <div class="datepicker-button-next" style="transform: rotate(180deg);"
+                            onclick="datepickerPrevMonth('mobile')"></div>
+                        <div id="datepicker_mobile_month" class="datepicker-month-mobile">Month</div>
+                        <div class="datepicker-button-next" onclick="datepickerNextMonth('mobile')"></div>
+                    </div>
+
+                    <div id="datepicker_mobile_tiles" class="f-rss">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- timeslot mobile -->
+        <div id="dropdown_timeslot_mobile" class="timeslot-mobile">
+            <div class="f-rsbc timeslot-mobile-header">
+                <div onclick="closeTimeslotMobile()">Cancel</div>
+                <div onclick="onTimeslotMobileClick()">Done</div>
+            </div>
+            <div id="timeslot_mobile_container" class="timeslot-mobile-items-container timeslot-mobile-fade">
+                <!-- item must use class 'timeslot-mobile-item' -->
+                <div class="timeslot-mobile-item">option 1</div>
+                <div class="timeslot-mobile-item">option 2</div>
+                <div class="timeslot-mobile-item">option 3</div>
+                <div class="timeslot-mobile-item">option 4</div>
+                <div class="timeslot-mobile-item">option 5</div>
+                <div class="timeslot-mobile-item">option 6</div>
+                <div class="timeslot-mobile-item">option 7</div>
+                <div class="timeslot-mobile-item">option 8</div>
+                <div class="timeslot-mobile-item">option 9</div>
+            </div>
+            <div class="timeslot-mobile-target"></div>
+        </div>
+    </div>
+
+    <!-- popup -->
+    <!-- set to display style="display: flex; to show -->
+    <div class="f-ccc popup" style="display: none;">
+        <div class="f-ccc popup-card">
+            <img src="./assets/icon-x.svg" alt="x">
+
+            <div class="popup-text-1" style="margin-bottom: 36px;">We are sorry this time slot has been fully
+                booked,
+                please select another one.</div>
+            <div class="f-rcc">
+                <button class="btn-primary">CONFIRM</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- error page -->
+    <!-- set to display style="display: flex; to show -->
+    <div class="f-ccc error-page" style="display: none;">
+        <img src="./assets/logo-text-chanel.svg" alt="logo text chanel">
+        <div class="text-5">Something went wrong, <br />the page cannot be load.</div>
+    </div>
+
+    <!-- dropdown script -->
+    <script>
+        let id_active_dropdown = undefined
+
+        document.getElementById('body').addEventListener('click', dropdownListener);
+
+        function dropdownListener(e) {
+            const el = event.target
+
+            if (el.classList.value.includes('item') || el.id.includes('dropdown')) return
+
+            // minimize all dropdown
+            closeAllDropdown()
+        }
+
+        function closeAllDropdown() {
+            const els = document.getElementsByClassName('dropdown')
+            Array.from(els).forEach(e => {
+                const el_label = e.firstElementChild
+                const eL_items_container = e.lastElementChild
+                const el_inner = el_label.nextElementSibling
+                const el_input = el_inner.lastElementChild
+
+                eL_items_container.style.display = 'none'
+                el_inner.classList.remove('dropdown-inner-open')
+                // el_inner.classList.add('dropdown-inner-active')
+
+                if (el_input.value && el_input.value !== '') return
+
+                el_inner.classList.remove('dropdown-inner-active')
+                dropdownLabelInactive(el_label)
+                dropdownBorderInactive(e, el_inner)
+            });
+        }
+
+        function onDropdownMouseover(id) {
+            const el = document.getElementById(id)
+            const el_label = el.firstElementChild
+            const el_inner = el_label.nextElementSibling
+
+            dropdownBorderActive(el, el_inner)
+        }
+
+        function onDropdownMouseout(id) {
+            const el = document.getElementById(id)
+            const el_label = el.firstElementChild
+            const el_inner = el_label.nextElementSibling
+            const el_input = el_inner.lastElementChild
+
+            // if element active dont remove border line
+            if (getActiveElId().includes(id)) return
+
+            dropdownBorderInactive(el, el_inner)
+        }
+
+        function onDropdownFocus(id) {
+            const el = document.getElementById(id)
+            const el_label = el.firstElementChild
+            const el_inner = el_label.nextElementSibling
+            const el_input = el_inner.lastElementChild
+
+            dropdownLabelActive(el_label)
+            dropdownBorderActive(el, el_inner)
+
+            openDropdown(id)
+        }
+
+        function dropdownLabelActive(el_label) {
+            el_label.classList.add('dropdown-label-active')
+        }
+
+        function dropdownLabelInactive(el_label) {
+            el_label.classList.remove('dropdown-label-active')
+        }
+
+        function dropdownBorderActive(el, el_inner) {
+            el.classList.add('dropdown-active')
+        }
+
+        function dropdownBorderInactive(el, el_inner) {
+            el.classList.remove('dropdown-active')
+        }
+
+        function openDropdown(id) {
+            const el = document.getElementById(id)
+            const el_label = el.firstElementChild
+            const el_inner = el_label.nextElementSibling
+            const el_items_container = el.lastElementChild
+
+            // mobile && timeslot dropdown
+            // if (el.classList.value.includes('timeslot') && screen.width <= 600) {
+            //     const el_timeslot = document.getElementById('dropdown_timeslot_mobile')
+            //     el_timeslot.style.display = 'block'
+
+            //     el_inner.classList.add('dropdown-inner-open')
+            //     el_inner.classList.remove('dropdown-inner-active')
+
+            //     // set body overflow
+            //     const body = document.getElementById('body')
+            //     body.style.overflow = 'hidden'
+
+            //     id_active_dropdown = id
+            //     scrollTimeslotMobileToSelectedVal(id)
+            //     onTimeslotMobileScroll()
+            //     return
+            // }
+
+            // desktop
+            el_items_container.style.display = 'block'
+            el_inner.classList.add('dropdown-inner-open')
+            el_inner.classList.remove('dropdown-inner-active')
+        }
+
+        function setDropdownItemsOnclick() {
+            const els = document.getElementsByClassName('item')
+            Array.from(els).forEach(e => {
+                e.addEventListener('click', onDropdownItemClick)
+            });
+        }
+
+        function onDropdownItemClick(e) {
+            const value = e.target.innerHTML
+            const el_dropdown = e.target.parentElement.parentElement
+            const el_inner = e.target.parentElement.previousElementSibling
+            const el_label = el_inner.previousElementSibling
+            const el_input = el_inner.lastElementChild
+            const el_items_container = el_dropdown.lastElementChild
+
+            Array.from(el_items_container.children).forEach(e => {
+                e.classList.remove('dropdown-item-active')
+            });
+
+            e.target.classList.add('dropdown-item-active')
+            el_input.value = value
+
+            dropdownLabelActive(el_label)
+            dropdownBorderActive(el_dropdown, el_inner)
+            closeAllDropdown()
+            checkFormValidity()
+        }
+
+        setDropdownItemsOnclick()
+
+        function onTimeslotMobileClick() {
+            const el = document.getElementById('timeslot_mobile_container')
+            const els = document.getElementsByClassName('timeslot-mobile-item')
+            let selected_time = ''
+
+            const els_position = Array.from(els).map(e => {
+                return {
+                    value: e.innerHTML,
+                    top: e.offsetTop,
+                    bottom: e.offsetTop + 30 // 30 is the item height
+                }
+            });
+
+            for (const i of els_position) {
+                if (i.top >= el.scrollTop + 83 && i.bottom <= el.scrollTop + 133) {
+                    selected_time = i.value
+                    break
+                }
+            }
+
+            if (selected_time === '') return
+
+            const el_dropdown = document.getElementById(id_active_dropdown)
+            const el_label = el_dropdown.firstElementChild
+            const el_inner = el_label.nextElementSibling
+            const el_input = el_inner.lastElementChild
+
+            el_input.value = selected_time
+
+            // close timeslot mobile
+            const el_timeslot = document.getElementById('dropdown_timeslot_mobile')
+            el_timeslot.style.display = 'none'
+
+            // set body overflow
+            const body = document.getElementById('body')
+            body.style.overflow = 'auto'
+
+            dropdownLabelActive(el_label)
+            dropdownBorderActive(el_dropdown, el_inner)
+            closeAllDropdown()
+            checkFormValidity()
+        }
+
+        function scrollTimeslotMobileToSelectedVal(id) {
+            const el_container = document.getElementById('timeslot_mobile_container')
+            const els = document.getElementsByClassName('timeslot-mobile-item')
+
+            const el_dropdown = document.getElementById(id)
+            const el_label = el_dropdown.firstElementChild
+            const el_inner = el_label.nextElementSibling
+            const el_input = el_inner.lastElementChild
+
+            const selected_val = el_input.value
+
+            const els_position = Array.from(els).map(e => {
+                return {
+                    value: e.innerHTML,
+                    top: e.offsetTop,
+                    bottom: e.offsetTop + 30 // 30 is the item height
+                }
+            });
+
+            for (const i of els_position) {
+                if (selected_val === i.value) {
+                    el_container.scrollTop = i.top - 90 // 90 is target top position
+                    break
+                }
+            }
+        }
+
+        var isScrolling;
+
+        function onTimeslotMobileScroll() {
+            // Setup isScrolling variable
+
+            // Listen for scroll events
+            const el_container = document.getElementById('timeslot_mobile_container')
+            el_container.addEventListener('scroll', scrollToItem);
+        }
+
+        function scrollToItem() {
+            const el_container = document.getElementById('timeslot_mobile_container')
+            const els = document.getElementsByClassName('timeslot-mobile-item')
+
+            const els_position = Array.from(els).map(e => {
+                return {
+                    top: e.offsetTop,
+                    bottom: e.offsetTop + 30 // 30 is the item height
+                }
+            });
+
+            // Clear our timeout throughout the scroll
+            window.clearTimeout(isScrolling);
+
+            // Set a timeout to run after scrolling ends
+            isScrolling = setTimeout(function () {
+                // Run the callback
+                for (const i of els_position) {
+                    if (i.top <= el_container.scrollTop + 90 + 15 && el_container.scrollTop + 90 + 15 <= i.bottom) {
+                        el_container.scrollTo({
+                            top: i.top - 90,
+                            behavior: 'smooth',
+                        })
+                        el_container.removeEventListener('scroll', scrollToItem)
+
+                        setTimeout(() => {
+                            el_container.addEventListener('scroll', scrollToItem)
+                        }, 300);
+                        break
+                    }
+                }
+            }, 200);
+        }
+
+        function closeTimeslotMobile() {
+            const el_timeslot = document.getElementById('dropdown_timeslot_mobile')
+            el_timeslot.style.display = 'none'
+
+            // set body overflow
+            const body = document.getElementById('body')
+            body.style.overflow = 'auto'
+        }
+    </script>
+
+    <!-- inputbox -->
+    <script>
+        function onInputboxMouseover(id) {
+            const el = document.getElementById(id)
+            const el_label = el.firstElementChild
+            const el_inner = el_label.nextElementSibling
+
+            inputboxBorderActive(el, el_inner)
+        }
+
+        function onInputboxMouseout(id) {
+            const el = document.getElementById(id)
+            const el_label = el.firstElementChild
+            const el_inner = el_label.nextElementSibling
+            const el_input = el_inner.lastElementChild
+
+            // if element active dont remove border line
+            if (getActiveElId().includes(id)) return
+
+            inputboxBorderInactive(el, el_inner)
+        }
+
+        function onInputboxFocus(id) {
+            const el = document.getElementById(id)
+            const el_label = el.firstElementChild
+            const el_inner = el_label.nextElementSibling
+            const el_input = el_inner.lastElementChild
+
+            inputboxLabelActive(el_label)
+            inputboxBorderActive(el, el_inner)
+        }
+
+        function onInputboxFocusOut(id) {
+            const el = document.getElementById(id)
+            const el_label = el.firstElementChild
+            const el_inner = el_label.nextElementSibling
+            const el_input = el_inner.lastElementChild
+
+            if (el_input.value === '') {
+                inputboxLabelInactive(el_label)
+            }
+
+            inputboxBorderInactive(el, el_inner)
+        }
+
+        function inputboxLabelActive(el_label) {
+            el_label.classList.add('inputbox-label-active')
+        }
+
+        function inputboxLabelInactive(el_label) {
+            el_label.classList.remove('inputbox-label-active')
+        }
+
+        function inputboxBorderActive(el, el_inner) {
+            el.classList.add('inputbox-active')
+        }
+
+        function inputboxBorderInactive(el, el_inner) {
+            el.classList.remove('inputbox-active')
+        }
+    </script>
+
+    <!-- datepicker -->
+    <script>
+        document.getElementById('body').addEventListener('click', expandDropdown);
+
+        let active_datepicker_id = undefined
+        let last_active_el_id = undefined
+
+        const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+        const today = new Date()
+        const current_month = today.getMonth()
+        const current_year = today.getFullYear()
+
+        let selected_month = today.getMonth()
+        let selected_date = today.getDate()
+        let selected_year = today.getFullYear()
+        let month_view = today.getMonth()
+        let year_view = today.getFullYear()
+
+        async function selectDate(params) {
+            selected_year = year_view
+            selected_month = month_view
+            selected_date = params.date
+
+            const el_datepicker = await document.getElementById(params.id)
+            const el_datepicker_label = el_datepicker.firstElementChild
+            const el_datepicker_inner = el_datepicker_label.nextElementSibling
+            const el_datepicker_input = el_datepicker_inner.lastElementChild
+
+            const date_rsvp = new Date(`${selected_date} ${months[month_view]} ${year_view}`)
+            const month = date_rsvp.toLocaleString('default', { month: 'long' })
+            const day =
+                selected_date === 1 ? selected_date + 'st'
+                    : selected_date === 2 || selected_date === 3 ? selected_date + 'nd'
+                        : selected_date + 'th'
+            const week_day = date_rsvp.toLocaleString('default', { weekday: 'short' })
+
+            const selected_full_date = `${month}, ${day} ${week_day}`
+
+            el_datepicker_input.value = selected_full_date
+
+            if (params.type === 'mobile') {
+                closeDatepickerMobile()
+            }
+
+            if (params.type === 'desktop') {
+                const el_datepicker_tiles = el_datepicker.lastElementChild
+                el_datepicker_tiles.style.display = 'none'
+            }
+
+            datepickerLabelActive(el_datepicker_label)
+            datepickerBorderInactive(el_datepicker, el_datepicker_inner)
+            checkFormValidity()
+        }
+
+        function onDatepickerFocus(id) {
+            const el_datepicker = document.getElementById(id)
+            const el_datepicker_label = el_datepicker.firstElementChild
+            const el_datepicker_inner = el_datepicker_label.nextElementSibling
+            const el_datepicker_input = el_datepicker_inner.lastElementChild
+            last_active_el_id = el_datepicker_input.id
+
+            datepickerLabelActive(el_datepicker_label)
+            datepickerBorderActive(el_datepicker, el_datepicker_inner)
+
+            if (screen.width <= 600) {
+                openDatepickerMobile(id)
+            } else {
+                openDatepickerDesktop(id)
+            }
+        }
+
+        function expandDropdown(e) {
+            if (!event.target.id.includes('datepicker') && !event.target.classList.value.includes('datepicker')) {
+                closeAllDatepicker()
+            }
+        }
+
+        function onDatepickerFocusOut(id) {
+            const el_datepicker = document.getElementById(id)
+            const el_datepicker_label = el_datepicker.firstElementChild
+            const el_datepicker_inner = el_datepicker_label.nextElementSibling
+            const el_datepicker_input = el_datepicker_inner.lastElementChild
+
+            if (el_datepicker_input.value && el_datepicker_input.value !== '') return
+
+            datepickerLabelInactive(el_datepicker_label)
+            datepickerBorderInactive(el_datepicker, el_datepicker_inner)
+        }
+
+        function datepickerOnmouseover(id) {
+            const el_datepicker = document.getElementById(id)
+            const el_datepicker_label = el_datepicker.firstElementChild
+            const el_datepicker_inner = el_datepicker_label.nextElementSibling
+
+            datepickerBorderActive(el_datepicker, el_datepicker_inner)
+        }
+
+        function datepickerOnmouseout(id) {
+            const el_datepicker = document.getElementById(id)
+            const el_datepicker_label = el_datepicker.firstElementChild
+            const el_datepicker_inner = el_datepicker_label.nextElementSibling
+            const el_datepicker_input = el_datepicker_inner.lastElementChild
+
+            if (getActiveElId().includes(id)) return
+
+            datepickerBorderInactive(el_datepicker, el_datepicker_inner)
+        }
+
+        function datepickerLabelActive(el_label) {
+            el_label.classList.add('datepicker-label-active')
+        }
+
+        function datepickerLabelInactive(el_label) {
+            el_label.classList.remove('datepicker-label-active')
+        }
+
+        function datepickerBorderActive(el_datepicker, el_datepicker_inner) {
+            el_datepicker.classList.add('datepicker-active')
+            el_datepicker_inner.classList.add('datepicker-inner-active')
+        }
+
+        function datepickerBorderInactive(el_datepicker, el_datepicker_inner) {
+            el_datepicker.classList.remove('datepicker-active')
+            el_datepicker_inner.classList.remove('datepicker-inner-active')
+        }
+
+        function closeAllDatepicker() {
+            const els = document.getElementsByClassName('datepicker-desktop')
+            Array.from(els).forEach(e => {
+                e.style.display = 'none'
+                const el_datepicker = e.parentElement
+                const el_datepicker_inner = e.previousElementSibling
+                datepickerBorderInactive(el_datepicker, el_datepicker_inner)
+            });
+        }
+
+        function getActiveElId() {
+            return document.activeElement.id
+        }
+
+        function openDatepickerMobile(id) {
+            const el_body = document.getElementById('body')
+            const el_datepicker_mobile = document.getElementById('datepicker_mobile')
+            active_datepicker_id = id
+
+            setDatepickerTiles({
+                id,
+                type: 'mobile',
+                current: true
+            })
+
+            el_body.style.overflow = 'hidden'
+            el_datepicker_mobile.style.display = 'flex'
+        }
+
+        function closeDatepickerMobile() {
+            const el_body = document.getElementById('body')
+            const el_datepicker_mobile = document.getElementById('datepicker_mobile')
+            el_datepicker_mobile.style.display = 'none'
+            el_body.style.overflow = 'auto'
+        }
+
+        function openDatepickerDesktop(id) {
+            const el_datepicker = document.getElementById(id)
+            const el_datepicker_tiles = el_datepicker.lastElementChild
+            active_datepicker_id = id
+
+            setDatepickerTiles({
+                id,
+                type: 'desktop',
+                current: true
+            })
+
+            el_datepicker_tiles.style.display = 'flex'
+        }
+
+        function setDatepickerTiles(params) {
+            const today = new Date()
+            const current_month = today.getMonth()
+            const current_year = today.getFullYear()
+
+            if (params.type === 'mobile') {
+                const el_datepicker_mobile = document.getElementById('datepicker_mobile')
+                const el_datepicker_header = el_datepicker_mobile.lastElementChild.firstElementChild.firstElementChild
+                const el_datepicker_mobile_tiles = el_datepicker_mobile.lastElementChild.firstElementChild.lastElementChild
+                const el_date_picker_month_prev_dummy = el_datepicker_header.firstElementChild
+                const el_date_picker_month_prev = el_date_picker_month_prev_dummy.nextElementSibling
+                const el_date_picker_month_val = el_date_picker_month_prev.nextElementSibling
+
+                // set month value
+                if (params.current) {
+                    el_date_picker_month_val.innerHTML = months[month_view]
+                }
+
+                if (params.next) {
+                    month_view = month_view + 1
+                    if (month_view > 11) {
+                        month_view = 0
+                        year_view = year_view + 1
+                    }
+                    el_date_picker_month_val.innerHTML = months[month_view]
+                }
+
+                if (params.prev) {
+                    month_view = month_view - 1
+                    if (month_view < 0) {
+                        month_view = 11
+                        year_view = year_view - 1
+                    }
+                    el_date_picker_month_val.innerHTML = months[month_view]
+                }
+
+
+                if (month_view === today.getMonth()) {
+                    el_date_picker_month_prev_dummy.style.display = 'block'
+                    el_date_picker_month_prev.style.display = 'none'
+                } else {
+                    el_date_picker_month_prev_dummy.style.display = 'none'
+                    el_date_picker_month_prev.style.display = 'block'
+                }
+
+                const first_day = new Date(today.getFullYear(), month_view, 1);
+                const last_day = new Date(today.getFullYear(), month_view + 1, 0);
+                const tile_empty = [...Array(first_day.getDay()).keys()]
+                const tile_days = [...Array(last_day.getDate()).keys()].map(x => x + 1)
+
+                el_datepicker_mobile_tiles.innerHTML = ''
+
+                days.forEach(d => {
+                    const el_day = document.createElement("DIV");
+                    el_day.setAttribute("class", "datepicker-day");
+                    el_day.setAttribute("style", `width: 24px; height: 23px; line-height: 23px; text-align: center; margin-bottom: 20px; margin-right: 30.33px`)
+                    el_day.innerHTML = d
+                    el_datepicker_mobile_tiles.appendChild(el_day)
+                })
+
+
+                tile_empty.forEach(d => {
+                    const el_empty = document.createElement("DIV");
+                    el_empty.setAttribute("style", `width: 24px; height: 23px; line-height: 23px; text-align: center; margin-bottom: 20px; margin-right: 30.33px`)
+                    el_datepicker_mobile_tiles.appendChild(el_empty)
+                })
+
+                tile_days.forEach(d => {
+                    const el_date_tile = document.createElement("DIV");
+                    el_date_tile.setAttribute("class", "datepicker-date");
+                    el_date_tile.setAttribute("style", `width: 24px; height: 23px; line-height: 23px; margin-bottom: 20px; margin-right: 30.33px`)
+                    el_date_tile.onclick = () => selectDate({
+                        id: params.id,
+                        type: 'mobile',
+                        date: d
+                    })
+
+                    if (d < today.getDate() && current_year === year_view && month_view === current_month) {
+                        el_date_tile.setAttribute("class", "datepicker-date datepicker-date-disable")
+                    }
+
+                    el_date_tile.innerHTML = d
+
+                    if (selected_month === month_view && d === selected_date && selected_year === year_view) {
+                        const el = document.createElement("DIV");
+                        el.setAttribute("class", "datepicker-date-active")
+                        el.setAttribute("style", `width: 40px; height: 40px; line-height: 40px; position: absolute; left: 0; top: 0;`)
+                        el.innerHTML = d
+                        el_date_tile.appendChild(el)
+                    }
+
+                    el_datepicker_mobile_tiles.appendChild(el_date_tile)
+                })
+
+                Array.from(el_datepicker_mobile_tiles.children).forEach((e, i) => {
+                    if ((i + 1) % 7 === 0) {
+                        e.style.marginRight = '0'
+                    }
+                })
+            }
+
+            if (params.type === 'desktop') {
+                const el_datepicker_desktop = document.getElementById(params.id)
+                const el_datepicker_header = el_datepicker_desktop.lastElementChild.firstElementChild.firstElementChild
+                const el_datepicker_desktop_tiles = el_datepicker_desktop.lastElementChild.firstElementChild.lastElementChild
+                const el_datepicker_month_prev_dummy = el_datepicker_header.firstElementChild
+                const el_datepicker_month_prev = el_datepicker_month_prev_dummy.nextElementSibling
+                const el_datepicker_month_val = el_datepicker_month_prev.nextElementSibling
+
+                // set month value
+                if (params.current) {
+                    el_datepicker_month_val.innerHTML = months[month_view]
+                }
+
+                if (params.next) {
+                    month_view = month_view + 1
+                    if (month_view > 11) {
+                        month_view = 0
+                        year_view = year_view + 1
+                    }
+                    el_datepicker_month_val.innerHTML = months[month_view]
+                }
+
+                if (params.prev) {
+                    month_view = month_view - 1
+                    if (month_view < 0) {
+                        month_view = 11
+                        year_view = year_view - 1
+                    }
+                    el_datepicker_month_val.innerHTML = months[month_view]
+                }
+
+
+                if (month_view === today.getMonth()) {
+                    el_datepicker_month_prev_dummy.style.display = 'block'
+                    el_datepicker_month_prev.style.display = 'none'
+                } else {
+                    el_datepicker_month_prev_dummy.style.display = 'none'
+                    el_datepicker_month_prev.style.display = 'block'
+                }
+
+                const first_day = new Date(today.getFullYear(), month_view, 1);
+                const last_day = new Date(today.getFullYear(), month_view + 1, 0);
+                const tile_empty = [...Array(first_day.getDay()).keys()]
+                const tile_days = [...Array(last_day.getDate()).keys()].map(x => x + 1)
+
+                el_datepicker_desktop_tiles.innerHTML = ''
+
+                days.forEach(d => {
+                    const el_day = document.createElement("DIV");
+                    el_day.setAttribute("class", "datepicker-day-desktop");
+                    el_day.setAttribute("style", `width: 24px; height: 18px; line-height: 18px; text-align: center; margin-bottom: 16px; margin-right: 7px`)
+                    el_day.innerHTML = d
+                    el_datepicker_desktop_tiles.appendChild(el_day)
+                })
+
+
+                tile_empty.forEach(d => {
+                    const el_empty = document.createElement("DIV");
+                    el_empty.setAttribute("style", `width: 24px; height: 18px; line-height: 18px; text-align: center; margin-bottom: 16px; margin-right: 7px`)
+                    el_datepicker_desktop_tiles.appendChild(el_empty)
+                })
+
+                tile_days.forEach(d => {
+                    const el_date_tile = document.createElement("DIV");
+                    el_date_tile.setAttribute("class", "datepicker-date-desktop");
+                    el_date_tile.setAttribute("style", `width: 24px; height: 18px; line-height: 18px; margin-bottom: 16px; margin-right: 7px`)
+                    el_date_tile.onclick = () => selectDate({
+                        id: params.id,
+                        type: 'desktop',
+                        date: d
+                    })
+
+                    if (d < today.getDate() && current_year === year_view && month_view === current_month) {
+                        el_date_tile.setAttribute("class", "datepicker-date-desktop datepicker-date-disable")
+                    }
+
+                    el_date_tile.innerHTML = d
+
+                    if (selected_month === month_view && d === selected_date && selected_year === year_view) {
+                        const el = document.createElement("DIV");
+                        el.setAttribute("class", "datepicker-date-active-desktop")
+                        el.setAttribute("style", `width: 28px; height: 28px; line-height: 28px; position: absolute; left: 0; top: 0;`)
+                        el.innerHTML = d
+                        el_date_tile.appendChild(el)
+                    }
+
+                    el_datepicker_desktop_tiles.appendChild(el_date_tile)
+                })
+
+                Array.from(el_datepicker_desktop_tiles.children).forEach((e, i) => {
+                    if ((i + 1) % 7 === 0) {
+                        e.style.marginRight = '0'
+                    }
+                })
+            }
+        }
+
+        function datepickerNextMonth(type) {
+            setDatepickerTiles({
+                id: active_datepicker_id,
+                type: type,
+                next: true
+            })
+        }
+
+        function datepickerPrevMonth(type) {
+            setDatepickerTiles({
+                id: active_datepicker_id,
+                type: type,
+                prev: true
+            })
+        }
+    </script>
+
+    <!-- form validation -->
+    <script>
+        function checkFormValidity() {
+            // single location
+            const el_datepicker = document.getElementById('input_datepicker_1')
+            const el_datepicker_preselected = document.getElementById('datepicker_1_preselected')
+            const el_datepicker_input_preselected = document.getElementById('input_datepicker_1_preselected')
+
+            // timeslot
+            const el_timeslot = document.getElementById('dropdown_1')
+            const el_timeslot_input = document.getElementById('input_dropdown_1')
+            const el_timeslot_inactive = document.getElementById('dropdown_1_inactive')
+
+            // button confirm
+            const el_button = document.getElementById('btn_confirm_single_location')
+
+            if (el_datepicker.checkValidity()
+                || el_datepicker_preselected.style.display === 'block' && el_datepicker_input_preselected.checkValidity()) {
+                el_timeslot.style.display = 'block'
+                el_timeslot_inactive.style.display = 'none'
+            }
+
+            if (
+                (el_datepicker.checkValidity()
+                    || el_datepicker_preselected.style.display === 'block' && el_datepicker_input_preselected.checkValidity())
+                && el_timeslot_input.checkValidity() && el_timeslot_input.value !== '') {
+                el_button.disabled = false
+            }
+
+            // multiple location
+            const el_dropdown_2 = document.getElementById('dropdown_2')
+            const el_dropdown_input_2 = document.getElementById('input_dropdown_2')
+
+            const el_dropdown_3 = document.getElementById('dropdown_3')
+            const el_dropdown_input_3 = document.getElementById('input_dropdown_3')
+            const el_dropdown_inactive_3 = document.getElementById('dropdown_3_inactive')
+
+            const el_datetime_2 = document.getElementById('date_and_time_2')
+
+            const el_datepicker_2 = document.getElementById('datepicker_2')
+            const el_datepicker_input_2 = document.getElementById('input_datepicker_2')
+            const el_datepicker_input_2_preselected = document.getElementById('input_datepicker_2_preselected')
+            const el_datepicker_inactive_2 = document.getElementById('datepicker_2_inactive')
+            const el_datepicker_inactive_2_preselected = document.getElementById('datepicker_2_preselected')
+
+            const el_timeslot_4 = document.getElementById('dropdown_4')
+            const el_timeslot_input_4 = document.getElementById('input_dropdown_4')
+            const el_timeslot_inactive_4 = document.getElementById('dropdown_4_inactive')
+
+            const el_button_multiple_location = document.getElementById('btn_confirm_multiple_location')
+
+            if (el_dropdown_input_2.checkValidity() && el_dropdown_input_2.value !== '') {
+                el_dropdown_3.style.display = 'block'
+                el_dropdown_inactive_3.style.display = 'none'
+            }
+
+            if (el_dropdown_input_3.checkValidity()) {
+                if (el_datepicker_inactive_2_preselected.style.display !== 'block') {
+                    el_datepicker_2.style.display = 'block'
+                    el_datepicker_inactive_2.style.display = 'none'
+                    el_datetime_2.style.color = 'var(--black_2)'
+                }
+            }
+
+            if (el_datepicker_input_2.checkValidity()
+                || (el_datepicker_inactive_2_preselected.style.display === 'block'
+                    && el_datepicker_input_2_preselected.checkValidity()
+                    && el_dropdown_input_3.checkValidity())) {
+                el_timeslot_4.style.display = 'block'
+                el_timeslot_inactive_4.style.display = 'none'
+            }
+
+            if (
+                el_dropdown_input_2.checkValidity() && el_dropdown_input_2.value !== ''
+                && el_dropdown_input_3.checkValidity() && el_dropdown_input_3.value !== ''
+                && (el_datepicker_input_2.checkValidity()
+                    || el_datepicker_inactive_2_preselected.style.display === 'block' && el_datepicker_input_2_preselected.checkValidity())
+                && el_timeslot_input_4.checkValidity() && el_timeslot_input_4.value !== '') {
+                el_button_multiple_location.disabled = false
+            }
+        }
+
+        checkFormValidity()
+    </script>
+
+    <!-- other -->
+    <script>
+        function onInputKeyUp(id, event) {
+            const el_input = document.getElementById(id)
+            el_input.style.height = el_input.scrollHeight + 'px'
+
+            el_input.parentElement.style.height = (46 - 24 + el_input.scrollHeight) + 'px'
+
+            if (event.key.toLowerCase() === 'backspace') {
+                el_input.style.height = '22px'
+                el_input.style.height = el_input.scrollHeight + 'px'
+                el_input.parentElement.style.height = (46 - 24 + el_input.scrollHeight) + 'px'
+            }
+
+            if (el_input.value.length === 0) {
+                el_input.style.height = '22px'
+                el_input.parentElement.style.height = '46px'
+            }
+
+            if (id === 'input_inputbox_1') {
+                const el_char_remaining = document.getElementById('characters_remaining_1')
+                el_char_remaining.innerHTML = 200 - el_input.value.length
+            }
+
+            if (id === 'input_inputbox_2') {
+                const el_char_remaining = document.getElementById('characters_remaining_2')
+                el_char_remaining.innerHTML = 200 - el_input.value.length
+            }
+        }
+
+        function minusFriend(id) {
+            const el_friend_count = document.getElementById(id)
+            const count = parseInt(el_friend_count.innerHTML)
+
+            if (count === 0) return
+
+            const new_val = count - 1
+            el_friend_count.innerHTML = new_val
+
+            if (new_val === 0) {
+                el_friend_count.previousElementSibling.disabled = true
+            }
+
+            if (new_val < 2) {
+                el_friend_count.nextElementSibling.disabled = false
+            }
+        }
+
+        function addFriend(id) {
+            const el_friend_count = document.getElementById(id)
+            const count = parseInt(el_friend_count.innerHTML)
+
+            if (count === 2) return
+
+
+            const new_val = count + 1
+            el_friend_count.innerHTML = new_val
+
+            if (new_val > 0) {
+                el_friend_count.previousElementSibling.disabled = false
+            }
+
+            if (new_val === 2) {
+                el_friend_count.nextElementSibling.disabled = true
+            }
+        }
+    </script>
+
+</body>
+
+</html>
