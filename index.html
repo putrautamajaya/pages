@@ -387,8 +387,10 @@
 
     .main-banner-mobile {
         display: block;
-        object-fit: cover;
+        /* object-fit: cover; */
         width: 100%;
+        background-image: url(./assets/main-banner-mobile.svg);
+        background-size: cover;
     }
 
     .main-banner-tablet {
@@ -1486,7 +1488,10 @@
     </div>
 
     <div class="f-rcc">
-        <img src="./assets/main-banner-mobile.svg" alt="logo chanel" class="main-banner-mobile">
+        <!-- <img src="./assets/main-banner-mobile.svg" alt="logo chanel" class="main-banner-mobile"> -->
+        <div class="main-banner-mobile">
+            <img src="./assets/main-banner-mobile.svg" alt="logo chanel" class="main-banner-mobile" style="visibility: hidden;">
+        </div>
         <img src="./assets/main-banner-tablet.svg" alt="logo chanel" class="main-banner-tablet">
         <img src="./assets/main-banner-desktop.svg" alt="logo chanel" class="main-banner-desktop">
     </div>
